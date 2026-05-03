@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>À propos – Green Pad</title>
+  <meta name="description" content="L’histoire de Green Pad — comment nous transformons des bouteilles en plastique recyclé en tapis de souris premium et sur mesure." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .story-section { padding: 110px 0; }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .story-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+    .story-blob { width: 380px; height: 380px; border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%; background: linear-gradient(135deg, var(--c1), var(--c2)); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); }
+    .story-pad { width: 220px; height: 160px; border-radius: 12px; background: linear-gradient(135deg, var(--c4), var(--c5)); box-shadow: var(--shadow-xl); transform: rotate(-4deg); }
+    .process-section { background: var(--c1); padding: 110px 0; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--c3), var(--c4)); z-index: 0; }
+    .process-step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .process-step__num { width: 72px; height: 72px; border-radius: 50%; background: white; border: 3px solid var(--c3); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--c4); box-shadow: var(--shadow-md); }
+    .process-step h4 { margin-bottom: 8px; }
+    .process-step p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .values-section { padding: 110px 0; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .value-card { padding: 40px 32px; border-radius: var(--radius-md); border: 2px solid var(--c1); transition: var(--transition); }
+    .value-card:hover { border-color: var(--c3); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .value-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--c1); display: flex; align-items: center; justify-content: center; color: var(--c4); margin-bottom: 20px; }
+    .value-card h4 { margin-bottom: 10px; }
+    .value-card p { font-size: 0.9rem; color: var(--text-light); }
+    .materials-section { background: var(--c5); padding: 110px 0; color: white; }
+    .materials-section h2, .materials-section h3 { color: white; }
+    .materials-section p { color: rgba(255,255,255,0.65); }
+    .materials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .bottle-count { display: flex; align-items: center; gap: 24px; margin-top: 36px; }
+    .bottle-icon { font-size: 3rem; }
+    .bottle-info strong { font-size: 2rem; font-family: var(--font-heading); color: var(--c2); }
+    .bottle-info span { font-size: 0.9rem; color: rgba(255,255,255,0.55); display: block; }
+    .steps-list { display: flex; flex-direction: column; gap: 20px; }
+    .steps-list-item { display: flex; gap: 20px; align-items: flex-start; }
+    .steps-list-num { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--c3); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: var(--c2); flex-shrink: 0; }
+    .steps-list-item h4 { color: white; margin-bottom: 4px; }
+    .steps-list-item p { font-size: 0.88rem; }
+    @media (max-width: 900px) {
+      .story-grid, .materials-grid { grid-template-columns: 1fr; gap: 48px; }
+      .story-visual { display: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-steps::before { display: none; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .values-grid, .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a><span>›</span><span>À propos</span></div>
+    <h1>Notre Histoire</h1>
+    <p>Une marque née de la conviction que beau design et durabilité ne s’opposent pas.</p>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <span class="section-label">Les Débuts</span>
+        <h2>Un Tapis avec une Mission</h2>
+        <div class="divider divider-left"></div>
+        <p>Green Pad est né d’une question simple : pourquoi les objets que nous utilisons tous les jours doivent-ils être fabriqués avec de nouveaux matériaux ? Les bouteilles en plastique s’accumulent dans les centres de recyclage — solides, polyvalentes, et attendant de devenir quelque chose d’utile.</p>
+        <p style="margin-top:16px;">Nous avons vu une opportunité. Un tapis de souris est utilisé des heures chaque jour par des millions de personnes. C’est une toile. C’est un message. Et pour nous, c’est une seconde vie pour du plastique qui pourrait sinon finir en décharge ou dans l’océan.</p>
+        <p style="margin-top:16px;">Aujourd’hui, Green Pad propose tout, du rectangle noir le plus minimal — inétemporel et discret — aux tapis les plus extravagants en formes personnalisées et en couleurs intenses. La gamme n’est pas qu’une ligne de produits ; c’est une philosophie : <em>chaque bureau raconte une histoire, et chaque tapis devrait aussi.</em></p>
+      </div>
+      <div class="story-visual">
+        <div class="story-blob">
+          <div class="story-pad"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Notre Processus</span>
+      <h2>De la Bouteille au Bureau</h2>
+      <p class="section-desc">Chaque Green Pad suit le même parcours — du plastique mis au rebut à un produit premium dont vous serez fier.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">01</div>
+        <h4>Collecte</h4>
+        <p>Les bouteilles PET sont collectées auprès de partenaires de recyclage certifiés et triées selon leur qualité.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02</div>
+        <h4>Traitement</h4>
+        <p>Les bouteilles sont nettoyées, broyées et transformées en fibres rPET et en matériau de base.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03</div>
+        <h4>Production</h4>
+        <p>Le matériau est faonné en tapis. Votre design est imprimé avec précision à l’aide d’encres éco-responsables.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04</div>
+        <h4>Contrôle Qualité</h4>
+        <p>Chaque tapis est inspecté pour la qualité de surface, la fidélité des couleurs et la finition des bords.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS / SUSTAINABILITY -->
+<section class="materials-section" id="sustainability">
+  <div class="container">
+    <div class="materials-grid">
+      <div>
+        <span class="section-label" style="color:var(--c2);">Durabilité</span>
+        <h2>Pourquoi le PET Recyclé ?</h2>
+        <div class="divider divider-left" style="background:linear-gradient(90deg,var(--c2),var(--c3));"></div>
+        <p>Le PET (polyéthylène téréphtalate) est l’un des plastiques les plus recyclés au monde. En achetant un Green Pad, vous détournez des bouteilles de la décharge et leur donnez une seconde vie fonctionnelle qui dure des années.</p>
+        <div class="bottle-count">
+          <div class="bottle-icon" style="display:flex;align-items:center;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--c2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+          </div>
+          <div class="bottle-info">
+            <strong>3 bouteilles</strong>
+            <span>recyclées par tapis de souris</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="steps-list">
+          <div class="steps-list-item">
+            <div class="steps-list-num">1</div>
+            <div>
+              <h4>Zéro Plastique Vierge</h4>
+              <p>Nous utilisons 100 % de PET recyclé post-consommation. Aucun nouveau plastique n’est produit dans notre chaîne d’approvisionnement.</p>
+            </div>
+          </div>
+          <div class="steps-list-item">
+            <div class="steps-list-num">2</div>
+            <div>
+              <h4>Encres Éco-Responsables</h4>
+              <p>Tous les designs sont imprimés avec des encres à base d’eau, non toxiques, sûres pour vous et l’environnement.</p>
+            </div>
+          </div>
+          <div class="steps-list-item">
+            <div class="steps-list-num">3</div>
+            <div>
+              <h4>Emballage Minimal</h4>
+              <p>Les tapis sont expédiés dans du carton recyclé sans film plastique — l’emballage raconte la même histoire que le produit.</p>
+            </div>
+          </div>
+          <div class="steps-list-item">
+            <div class="steps-list-num">4</div>
+            <div>
+              <h4>Longue Durée de Vie</h4>
+              <p>Conçu pour durer des années, pas des mois. Une plus longue durée de vie signifie moins de ressources utilisées au fil du temps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Ce Qui Nous Anime</span>
+      <h2>Nos Valeurs</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>La Qualité Avant Tout</h4>
+        <p>Nous ne faisons jamais de compromis sur la qualité des matériaux. Recyclé ne signifie pas inférieur — nos tapis sont plus lisses, plus durables et plus beaux que de nombreuses alternatives conventionnelles.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h4>Transparence Totale</h4>
+        <p>Nous partageons notre chaîne d’approvisionnement, nos matériaux et notre impact environnemental ouvertement. Pas d’écowashing — juste des chiffres honnêtes et des produits honnêtes.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h4>Liberté Créative</h4>
+        <p>Nous croyons que le design est personnel. Que vous vouliez le tapis le plus minimal possible ou la création personnalisée la plus élaborée, nous sommes là pour le réaliser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT NUMBERS -->
+<section style="background:var(--c1);padding:80px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+      <div>
+        <div style="font-family:var(--font-heading);font-size:2.6rem;font-weight:700;color:var(--c4);margin-bottom:8px;">1 500+</div>
+        <div style="font-size:0.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;">Bouteilles Recyclées</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-heading);font-size:2.6rem;font-weight:700;color:var(--c4);margin-bottom:8px;">500+</div>
+        <div style="font-size:0.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;">Clients Satisfaits</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-heading);font-size:2.6rem;font-weight:700;color:var(--c4);margin-bottom:8px;">250 kg</div>
+        <div style="font-size:0.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;">CO₂ Évités</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-heading);font-size:2.6rem;font-weight:700;color:var(--c4);margin-bottom:8px;">0%</div>
+        <div style="font-size:0.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;">Plastique Vierge Utilisé</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:80px 0;text-align:center;">
+  <div class="container">
+    <h2 style="margin-bottom:16px;">Prêt à Rejoindre le Mouvement ?</h2>
+    <p style="max-width:480px;margin:0 auto 36px;color:var(--text-light);">Chaque achat est un vote pour le type de monde que vous souhaitez. Parcourez notre collection ou créez votre propre tapis sur mesure.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="shop.html"   class="btn btn-primary btn-lg">Voir la Boutique</a>
+      <a href="custom.html" class="btn btn-secondary btn-lg">Design Sur Mesure</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="about.html#sustainability" class="footer__link">Durabilité</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Livraison</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer__social-link" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

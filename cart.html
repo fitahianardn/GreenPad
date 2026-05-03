@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>Panier – Green Pad</title>
+  <meta name="description" content="Vérifiez votre panier Green Pad et passez votre commande." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .cart-layout { display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: start; }
+    .cart-section-title { font-family: var(--font-heading); font-size: 1.5rem; color: var(--c5); margin-bottom: 8px; padding-bottom: 20px; border-bottom: 2px solid var(--c1); display: flex; align-items: center; justify-content: space-between; }
+    .cart-section-title .clear-btn { font-size: 0.78rem; font-weight: 500; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: color var(--transition); font-family: var(--font-body); }
+    .cart-section-title .clear-btn:hover { color: #c0392b; }
+    .checkout-form { margin-top: 28px; }
+    .checkout-form h4 { font-family: var(--font-heading); font-size: 1rem; color: var(--c5); margin-bottom: 18px; }
+    .promo-row { display: flex; gap: 10px; }
+    .promo-row input { flex: 1; }
+    .shipping-notice { background: linear-gradient(135deg, rgba(97,103,139,0.08), rgba(86,84,113,0.05)); border: 1px solid var(--c2); border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.84rem; color: var(--c4); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .guarantee-badges { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+    .guarantee-badge { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text-light); }
+    .guarantee-badge svg { flex-shrink: 0; color: var(--c4); }
+    @media (max-width: 900px) { .cart-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a><span>›</span><span>Panier</span></div>
+    <h1>Votre Panier</h1>
+    <p>Vérifiez vos articles et procédez au paiement.</p>
+  </div>
+</div>
+
+<!-- CART MAIN -->
+<section class="section-sm">
+  <div class="container">
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <h3>Votre panier est vide</h3>
+      <p>Il semble que vous n’ayez encore rien ajouté. Découvrez notre collection de tapis de souris éco-responsables.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="shop.html"   class="btn btn-primary">Parcourir la Collection</a>
+        <a href="custom.html" class="btn btn-secondary">Créer un Tapis Sur Mesure</a>
+      </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-layout" id="summaryBlock" style="display:none;">
+      <!-- Items -->
+      <div>
+        <div class="cart-section-title">
+          <span>Articles du Panier</span>
+          <button id="clearCart" class="clear-btn">Tout Vider</button>
+        </div>
+        <div id="cartItems"></div>
+        <div style="margin-top:32px;">
+          <a href="shop.html" style="display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--c4);font-weight:500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Continuer mes Achats
+          </a>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div>
+        <div class="order-summary">
+          <h3>Récapitulatif</h3>
+
+          <div class="shipping-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Livraison à partir de 3 000 Ar — offerte dès 3 articles achetés
+          </div>
+
+          <div class="summary-row">
+            <span>Sous-total</span>
+            <span id="sumSubtotal">0 Ar</span>
+          </div>
+          <div class="summary-row">
+            <span>Livraison</span>
+            <span id="sumShipping">3 000 Ar</span>
+          </div>
+          <div class="summary-row">
+            <span>Emballage éco</span>
+            <span style="color:var(--c4);font-weight:500;">Inclus</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="sumTotal">0 Ar</span>
+          </div>
+
+          <button class="btn btn-primary" id="checkoutBtn" style="width:100%;margin-bottom:16px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Passer la Commande
+          </button>
+          <a href="shop.html" class="btn btn-light" style="width:100%;text-align:center;">Continuer mes Achats</a>
+
+          <!-- Promo -->
+          <div style="margin-top:24px;">
+            <h4 style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--c5);font-family:var(--font-body);font-weight:600;margin-bottom:10px;">Code Promo</h4>
+            <div class="promo-row">
+              <input type="text" class="form-input" placeholder="Entrez votre code…" style="padding:10px 14px;" />
+              <button class="btn btn-light btn-sm">Appliquer</button>
+            </div>
+          </div>
+
+          <div class="guarantee-badges">
+            <div class="guarantee-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Paiement sécurisé
+            </div>
+            <div class="guarantee-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Retours sous 14 jours
+            </div>
+            <div class="guarantee-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3"/></svg>
+              Emballage éco-responsable
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recommendations -->
+<section style="background:var(--c1);padding:80px 0;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:40px;">
+      <span class="section-label">Vous aimerez peut-être aussi</span>
+      <h2>Complétez Votre Installation</h2>
+    </div>
+    <div class="grid-4" id="recGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Livraison</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer__social-link" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const recGrid = document.getElementById('recGrid');
+    if (!recGrid || !window.PRODUCTS) return;
+    const cartIds = GP.getCart().map(i => i.id);
+    const recs = PRODUCTS.filter(p => !cartIds.includes(p.id)).slice(0, 4);
+    recGrid.innerHTML = recs.map(p => `
+      <div class="product-card">
+        <a href="shop.html">        <div class="product-card__img"><img src="assets/${p.img}" alt="${p.name}" class="product-card__photo" loading="lazy" onerror="this.style.display='none'" /></div></a>
+        <div class="product-card__body">
+          <div class="product-card__name">${p.name}</div>
+          <div class="product-card__desc">${p.desc}</div>
+          <div class="product-card__footer">
+            <span class="product-card__price">${GP.formatPrice(p.price)}</span>
+            <button class="product-card__btn" data-id="${p.id}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>`).join('');
+    recGrid.querySelectorAll('.product-card__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = PRODUCTS.find(x => x.id === +btn.dataset.id);
+        if (p) { GP.addToCart({ id: p.id, name: p.name, price: p.price, padClass: p.padClass, size: p.sizes[1] || p.sizes[0] }); location.reload(); }
+      });
+    });
+  });
+</script>
+</body>
+</html>

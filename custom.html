@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>Sur Mesure – Green Pad</title>
+  <meta name="description" content="Concevez votre tapis de souris idéal. Choisissez la taille, la forme, le design et les couleurs. Fabriqué en plastique recyclé — personnalisé pour vous." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .custom-layout { display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: start; }
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .option-grid { display: grid; gap: 14px; }
+    .option-grid-2 { grid-template-columns: 1fr 1fr; }
+    .option-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .option-card { border: 2px solid var(--c1); border-radius: var(--radius-md); padding: 20px 16px; text-align: center; cursor: pointer; transition: var(--transition); background: white; }
+    .option-card:hover { border-color: var(--c3); }
+    .option-card.selected { border-color: var(--c4); background: linear-gradient(135deg, rgba(97,103,139,0.06), rgba(86,84,113,0.06)); }
+    .option-card__icon { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; color: var(--c4); }
+    .size-option .option-card__icon { font-size: 1rem; }
+    .option-card__name { font-weight: 600; font-size: 0.9rem; color: var(--c5); margin-bottom: 4px; }
+    .option-card__desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
+    .shape-preview { width: 56px; height: 40px; background: var(--c3); margin: 0 auto 10px; opacity: 0.7; }
+    .shape-rect     { border-radius: 4px; width: 56px; height: 36px; }
+    .shape-square   { border-radius: 4px; width: 40px; height: 40px; }
+    .shape-rounded  { border-radius: 16px; width: 56px; height: 36px; }
+    .shape-oval     { border-radius: 50%; width: 56px; height: 36px; }
+    .shape-freeform { border-radius: 30% 70% 60% 40% / 40% 50% 50% 60%; width: 48px; height: 40px; }
+    .color-swatches { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .color-swatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: var(--transition); box-shadow: var(--shadow-sm); }
+    .color-swatch:hover { transform: scale(1.15); border-color: white; box-shadow: 0 0 0 2px var(--c4); }
+    .step-actions { display: flex; gap: 12px; margin-top: 40px; }
+    .preview-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 32px; position: sticky; top: 100px; }
+    .preview-card h3 { margin-bottom: 24px; font-size: 1.2rem; }
+    #previewWrap { width: 100%; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 24px; }
+    #padPreview { width: 100%; height: 100%; transition: all 0.4s ease; }
+    .preview-summary { border-top: 1px solid var(--c1); padding-top: 20px; }
+    .preview-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; }
+    .preview-row span:first-child { color: var(--text-light); }
+    .preview-row span:last-child { font-weight: 600; color: var(--c5); }
+    .price-note { background: var(--c1); border-radius: var(--radius-sm); padding: 14px; margin-top: 16px; font-size: 0.82rem; color: var(--c4); text-align: center; }
+    .upload-area { border: 2px dashed var(--c2); border-radius: var(--radius-md); padding: 40px; text-align: center; cursor: pointer; transition: border-color var(--transition); background: #fafafa; }
+    .upload-area:hover { border-color: var(--c4); }
+    .upload-area svg { opacity: 0.4; margin: 0 auto 12px; }
+    .how-it-works { background: var(--c1); padding: 80px 0; margin-top: 0; }
+    .hiw-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .hiw-card { text-align: center; padding: 32px 20px; }
+    .hiw-num { width: 52px; height: 52px; border-radius: 50%; background: var(--c4); color: white; font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .hiw-card h4 { margin-bottom: 8px; }
+    .hiw-card p { font-size: 0.88rem; color: var(--text-light); }
+    @media (max-width: 900px) {
+      .custom-layout { grid-template-columns: 1fr; }
+      .preview-card { position: static; }
+      .hiw-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .option-grid-3 { grid-template-columns: 1fr 1fr; }
+      .hiw-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a><span>›</span><span>Sur Mesure</span></div>
+    <h1>Créez Votre Tapis</h1>
+    <p>N’importe quelle forme, n’importe quel design — donnez vie à votre vision avec des matériaux recyclés.</p>
+  </div>
+</div>
+
+<!-- CUSTOM FORM -->
+<section class="section-sm">
+  <div class="container">
+
+    <!-- Step indicator -->
+    <div class="steps" style="max-width:640px;margin:0 auto 52px;">
+      <div class="step active" id="s1">
+        <div class="step__num">1</div>
+        <span class="step__label">Taille</span>
+      </div>
+      <div class="step" id="s2">
+        <div class="step__num">2</div>
+        <span class="step__label">Forme</span>
+      </div>
+      <div class="step" id="s3">
+        <div class="step__num">3</div>
+        <span class="step__label">Design</span>
+      </div>
+      <div class="step" id="s4">
+        <div class="step__num">4</div>
+        <span class="step__label">Détails</span>
+      </div>
+    </div>
+
+    <div class="custom-layout">
+      <!-- Form -->
+      <div>
+        <form id="customForm">
+
+          <!-- STEP 1: SIZE -->
+          <div class="form-step active" id="step1">
+            <h3 style="margin-bottom:8px;">Choisissez Votre Taille</h3>
+            <p style="margin-bottom:28px;color:var(--text-light);">Toutes les tailles sont disponibles dans toutes les formes et tous les designs.</p>
+            <div class="option-grid option-grid-2">
+              <div class="option-card size-option selected" data-size="S (30×25)">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="9" width="10" height="8" rx="1"/></svg></div>
+                <div class="option-card__name">Petit</div>
+                <div class="option-card__desc">30 × 25 cm<br/>Compact &amp; portable</div>
+              </div>
+              <div class="option-card size-option" data-size="M (40×30)">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M0 21h24"/></svg></div>
+                <div class="option-card__name">Moyen</div>
+                <div class="option-card__desc">40 × 30 cm<br/>Le plus populaire</div>
+              </div>
+              <div class="option-card size-option" data-size="L (90×40)">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="16" x2="12" y2="21"/></svg></div>
+                <div class="option-card__name">Grand</div>
+                <div class="option-card__desc">90 × 40 cm<br/>Tapis de bureau étendu</div>
+              </div>
+              <div class="option-card size-option" data-size="XL (120×60)">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+                <div class="option-card__name">Tapis XL</div>
+                <div class="option-card__desc">120 × 60 cm<br/>Couverture bureau complète</div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn btn-primary btn-next">Suivant : Forme →</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: SHAPE -->
+          <div class="form-step" id="step2">
+            <h3 style="margin-bottom:8px;">Choisissez Votre Forme</h3>
+            <p style="margin-bottom:28px;color:var(--text-light);">Vous voulez quelque chose de totalement unique ? Optez pour la forme libre !</p>
+            <div class="option-grid option-grid-3">
+              <div class="option-card shape-option selected" data-shape="rectangle">
+                <div class="shape-preview shape-rect"></div>
+                <div class="option-card__name">Rectangle</div>
+                <div class="option-card__desc">Le grand classique</div>
+              </div>
+              <div class="option-card shape-option" data-shape="square">
+                <div class="shape-preview shape-square"></div>
+                <div class="option-card__name">Carré</div>
+                <div class="option-card__desc">Symétrique &amp; audacieux</div>
+              </div>
+              <div class="option-card shape-option" data-shape="rounded">
+                <div class="shape-preview shape-rounded"></div>
+                <div class="option-card__name">Arrondi</div>
+                <div class="option-card__desc">Doux, moderne</div>
+              </div>
+              <div class="option-card shape-option" data-shape="oval">
+                <div class="shape-preview shape-oval"></div>
+                <div class="option-card__name">Ovale</div>
+                <div class="option-card__desc">Lisse &amp; élégant</div>
+              </div>
+              <div class="option-card shape-option" data-shape="freeform">
+                <div class="shape-preview shape-freeform"></div>
+                <div class="option-card__name">Forme Libre</div>
+                <div class="option-card__desc">La forme de vos rêves</div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn btn-light btn-prev">← Retour</button>
+              <button type="button" class="btn btn-primary btn-next">Suivant : Design →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: DESIGN -->
+          <div class="form-step" id="step3">
+            <h3 style="margin-bottom:8px;">Choisissez Votre Design</h3>
+            <p style="margin-bottom:28px;color:var(--text-light);">D’une seule couleur à votre propre illustration importée.</p>
+            <div class="option-grid option-grid-2">
+              <div class="option-card design-option selected" data-design="solid">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="currentColor" opacity="0.25"/></svg></div>
+                <div class="option-card__name">Couleur Unie</div>
+                <div class="option-card__desc">Une couleur pure et propre. Inétemporel et minimal.</div>
+              </div>
+              <div class="option-card design-option" data-design="gradient">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+                <div class="option-card__name">Dégradé</div>
+                <div class="option-card__desc">Transition de couleur douce, élégante.</div>
+              </div>
+              <div class="option-card design-option" data-design="pattern">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+                <div class="option-card__name">Motif</div>
+                <div class="option-card__desc">Motifs géométriques ou organiques répétés.</div>
+              </div>
+              <div class="option-card design-option" data-design="upload">
+                <div class="option-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                <div class="option-card__name">Importer un Fichier</div>
+                <div class="option-card__desc">Votre photo, logo ou illustration — tout est possible.</div>
+              </div>
+            </div>
+
+            <!-- Colour picker (shown for solid/gradient) -->
+            <div id="colorArea" style="margin-top:28px;">
+              <label class="form-label">Choisir une Couleur</label>
+              <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                <input type="color" id="colorPicker" value="#61678B" style="width:52px;height:52px;border-radius:10px;border:none;cursor:pointer;padding:0;" />
+                <div class="color-swatches">
+                  <div class="color-swatch" data-color="#111111" style="background:#111111;" title="Noir"></div>
+                  <div class="color-swatch" data-color="#565471" style="background:#565471;" title="Dark Purple"></div>
+                  <div class="color-swatch" data-color="#61678B" style="background:#61678B;" title="Purple"></div>
+                  <div class="color-swatch" data-color="#8488B5" style="background:#8488B5;" title="Lavender"></div>
+                  <div class="color-swatch" data-color="#BCB9D8" style="background:#BCB9D8;" title="Light Lavender"></div>
+                  <div class="color-swatch" data-color="#DEDEEA" style="background:#DEDEEA;" title="Pale Lavender"></div>
+                  <div class="color-swatch" data-color="#3d5a3e" style="background:#3d5a3e;" title="Forest Green"></div>
+                  <div class="color-swatch" data-color="#c0392b" style="background:#c0392b;" title="Red"></div>
+                  <div class="color-swatch" data-color="#e67e22" style="background:#e67e22;" title="Orange"></div>
+                  <div class="color-swatch" data-color="#f1c40f" style="background:#f1c40f;" title="Yellow"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload area (shown for upload) -->
+            <div id="uploadArea" style="margin-top:28px;display:none;">
+              <label class="form-label">Importer Votre Fichier de Design</label>
+              <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p style="color:var(--text-light);margin:0;">Cliquez pour importer ou glissez-déposez<br /><small style="color:var(--c3);">PNG, JPG, SVG, PDF jusqu’à 50 Mo</small></p>
+              </div>
+              <input type="file" id="fileInput" style="display:none;" accept="image/*,.pdf" />
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-light btn-prev">← Retour</button>
+              <button type="button" class="btn btn-primary btn-next">Suivant : Détails →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: CONTACT -->
+          <div class="form-step" id="step4">
+            <h3 style="margin-bottom:8px;">Vos Coordonnées</h3>
+            <p style="margin-bottom:28px;color:var(--text-light);">Nous examinerons votre commande et vous répondrons dans les 24 heures.</p>
+            <div class="grid-2" style="gap:20px;">
+              <div class="form-group">
+                <label class="form-label" for="custName">Nom complet *</label>
+                <input type="text" id="custName" class="form-input" placeholder="Jean Rakoto" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="custEmail">Adresse e-mail *</label>
+                <input type="email" id="custEmail" class="form-input" placeholder="jean@exemple.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custPhone">Téléphone (facultatif)</label>
+              <input type="tel" id="custPhone" class="form-input" placeholder="+261 34 12 345 67" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="orderNote">Notes supplémentaires</label>
+              <textarea id="orderNote" class="form-textarea" placeholder="Décrivez votre design en détail, couleurs spécifiques, texte, exigences particulières…"></textarea>
+              <span class="form-hint">Plus vous nous donnez de détails, mieux nous pourrons correspondre à votre vision.</span>
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn btn-light btn-prev">← Retour</button>
+              <button type="submit" class="btn btn-primary btn-lg">Soumettre ma Commande</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="preview-card">
+        <h3>Aperçu en Direct</h3>
+        <div id="previewWrap">
+          <div id="padPreview" class="pad-live-preview"></div>
+        </div>
+        <div class="preview-summary">
+          <div class="preview-row"><span>Taille</span><span id="sumSize">S (30×25)</span></div>
+          <div class="preview-row"><span>Forme</span><span id="sumShape">Rectangle</span></div>
+          <div class="preview-row"><span>Design</span><span id="sumDesign">Couleur Unie</span></div>
+        </div>
+        <div class="price-note">À partir de <strong>50 000 Ar</strong> — prix final communiqué après étude</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Processus</span>
+      <h2>Comment Fonctionnent les Commandes Sur Mesure</h2>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-card">
+        <div class="hiw-num">1</div>
+        <h4>Soumettez Votre Commande</h4>
+        <p>Remplissez le formulaire avec votre taille, forme, design souhaité et tout fichier pertinent.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">2</div>
+        <h4>Nous Étudions &amp; Deviisons</h4>
+        <p>Sous 24h, nous vous envoyons un devis détaillé et une maquette numérique à valider.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">3</div>
+        <h4>Production</h4>
+        <p>Une fois validé, votre tapis est fabriqué à partir de bouteilles recyclées et contrôlé.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">4</div>
+        <h4>Livré chez Vous</h4>
+        <p>Votre tapis unique arrive dans un emballage éco-responsable, prêt à inspirer chaque session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer__social-link" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>

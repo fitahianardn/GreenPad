@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>Green Pad – Tapis de Souris Éco-Conçus</title>
+  <meta name="description" content="Green Pad fabrique des tapis de souris premium à partir de bouteilles en plastique recyclé. Du noir minimal aux créations sur mesure — fait pour vous, meilleur pour la planète." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="tag tag-eco hero__tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a10 10 0 000 20"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10"/><path d="M12 2v20M2 12h20"/></svg>
+          Fabriqué à partir de Plastique Recyclé
+        </span>
+        <h1 class="hero__title">Éco-Conçu.<br /><em>Uniquement Vôtre.</em></h1>
+        <p class="hero__desc">
+          Chaque Green Pad est fabriqué à partir de bouteilles PET recyclées — offrant une seconde vie au plastique, un bureau à la fois. Choisissez un modèle prêt-à-porter ou créez quelque chose d'entièrement unique.
+        </p>
+        <div class="hero__actions">
+          <a href="shop.html"   class="btn btn-primary btn-lg">Voir la Collection</a>
+          <a href="custom.html" class="btn btn-secondary btn-lg">Créer le Vôtre</a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>3</strong><span>bouteilles recyclées<br/>par tapis</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>500+</strong><span>tapis<br/>livrés</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>100%</strong><span>personnalisable<br/>à la demande</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__photo-frame">
+          <img
+            src="assets/tapis 11.jpeg"
+            alt="Bureau créatif avec tapis de souris Green Pad"
+            class="hero__photo"
+            loading="eager"
+          />
+          <div class="hero__photo-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+            <span>100 % Recyclé</span>
+          </div>
+          <div class="hero__photo-mini-pad pad--twilight"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES BAR ========== -->
+<section class="features-bar">
+  <div class="container">
+    <div class="features-bar__inner">
+      <div class="features-bar__item">
+        <div class="features-bar__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9m-9 9a9 9 0 019-9"/></svg>
+        </div>
+        <div>
+          <strong>100 % PET Recyclé</strong>
+          <p>Fabriqué à partir de bouteilles récupérées</p>
+        </div>
+      </div>
+      <div class="features-bar__sep"></div>
+      <div class="features-bar__item">
+        <div class="features-bar__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <div>
+          <strong>Tous les Designs Possibles</strong>
+          <p>Du noir uni aux illustrations les plus originales</p>
+        </div>
+      </div>
+      <div class="features-bar__sep"></div>
+      <div class="features-bar__item">
+        <div class="features-bar__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <strong>Surface Premium</strong>
+          <p>Glisse fluide, base antidérapante en caoutchouc</p>
+        </div>
+      </div>
+      <div class="features-bar__sep"></div>
+      <div class="features-bar__item">
+        <div class="features-bar__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div>
+          <strong>Livraison Rapide</strong>
+          <p>Dès 3 000 Ar — offerte dès 3 articles achetés</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED PRODUCTS ========== -->
+<section class="section bg-subtle">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Notre Collection</span>
+      <h2 class="section-title">Designs Phares</h2>
+      <p class="section-desc">Du plus minimaliste au plus audacieux — chaque tapis est une petite œuvre d’art fabriquée durablement.</p>
+    </div>
+    <div class="grid-4 featured-grid" id="featuredGrid"></div>
+    <div class="text-center" style="margin-top:48px;">
+      <a href="shop.html" class="btn btn-secondary">Voir Toute la Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SPLIT: FROM SIMPLE TO ORIGINAL ========== -->
+<section class="section split-section">
+  <div class="container">
+    <div class="split-section__inner">
+      <div class="split-section__pads">
+        <div class="split-mini pad--classic">
+          <span style="color:rgba(255,255,255,0.2);font-family:var(--font-heading);font-size:1.4rem;font-style:italic;">Noir</span>
+        </div>
+        <div class="split-mini pad--geometric"></div>
+        <div class="split-mini pad--organic"></div>
+        <div class="split-mini pad--stellar"></div>
+      </div>
+      <div class="split-section__content">
+        <span class="section-label">Liberté de Design</span>
+        <h2>Du Plus Simple<br />au Plus Original</h2>
+        <div class="divider divider-left"></div>
+        <p>Vous voulez un rectangle noir mat tout simple ? C’est fait. Un tapis en forme de galaxie avec le portrait de votre chat ? Aussi. Green Pad n’a pas de limites — si vous pouvez l’imaginer, nous pouvons le réaliser.</p>
+        <ul class="feature-list" style="margin-top:24px;">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c4)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            N’importe quelle forme : carré, rectangle, ovale, forme libre
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c4)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Toutes les tailles : du petit (30×25 cm) au grand bureau (120×60 cm)
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c4)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Importez vos propres illustrations, photos ou logos
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--c4)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Commandes en gros pour entreprises disponibles
+          </li>
+        </ul>
+        <a href="custom.html" class="btn btn-primary" style="margin-top:36px;">Commencer à Personnaliser</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT TEASER ========== -->
+<section class="section bg-light about-teaser">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap:80px;">
+      <div>
+        <span class="section-label">Notre Histoire</span>
+        <h2>Un Tapis avec une Mission</h2>
+        <div class="divider divider-left"></div>
+        <p>Green Pad est né d’un constat simple : des millions de bouteilles en plastique sont jetées chaque jour, tandis que les créatifs recherchent des surfaces qui reflètent leur personnalité. Nous avons décidé de faire le lien.</p>
+        <p style="margin-top:16px;">Chaque tapis de souris nécessite environ 3 bouteilles PET recyclées. Zéro plastique vierge. Zéro compromis sur la qualité. Juste un beau produit fonctionnel qui porte l’histoire de ses matériaux.</p>
+        <a href="about.html" class="btn btn-secondary" style="margin-top:36px;">Lire Notre Histoire</a>
+      </div>
+      <div class="about-teaser__visual">
+        <div class="about-photo-wrap">
+          <img
+            src="assets/bouteille.jpg"
+            alt="Bouteilles recyclées pour Green Pad"
+            class="about-photo"
+            loading="lazy"
+          />
+          <div class="about-photo-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+            <div>
+              <strong>3 bouteilles</strong>
+              <span>par tapis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== IMPACT STATS ========== -->
+<section class="section impact-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Impact Environnemental</span>
+      <h2>Des Chiffres Qui Comptent</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-card__num">1 500+</div>
+        <div class="impact-card__label">Bouteilles Plastique Recyclées</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card__num">500+</div>
+        <div class="impact-card__label">Tapis Livrés dans le Monde</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card__num">0</div>
+        <div class="impact-card__label">Plastique Vierge Utilisé</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card__num">250 kg</div>
+        <div class="impact-card__label">CO₂ Évités vs. Conventionnel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CUSTOM CTA BANNER ========== -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner__inner">
+      <div>
+        <h2 style="color:white;">Une Idée en Tête ?<br /><em>Faites-la Réalité.</em></h2>
+        <p style="color:rgba(255,255,255,0.7); margin-top:14px; max-width:500px;">Formes personnalisées, vos propres illustrations, logos d’équipe — nous donnons vie à toute idée avec des matériaux recyclés dont vous pouvez être fier.</p>
+      </div>
+      <div class="cta-banner__actions">
+        <a href="custom.html" class="btn btn-white btn-lg">Commander sur Mesure</a>
+        <a href="contact.html" class="btn btn-lg" style="border:2px solid rgba(255,255,255,0.4);color:white;">Nous Contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé. Le design rencontre la durabilité.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="shop.html?filter=minimal" class="footer__link">Minimal</a></li>
+          <li><a href="shop.html?filter=artistic" class="footer__link">Artistique</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="about.html#sustainability" class="footer__link">Durabilité</a></li>
+          <li><a href="contact.html" class="footer__link">Nous Contacter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Livraison</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés. Fait avec amour &amp; plastique recyclé.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Pinterest">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.78 1.2-5.08 1.2-5.08s-.31-.61-.31-1.52c0-1.42.82-2.49 1.85-2.49.87 0 1.3.66 1.3 1.44 0 .88-.56 2.2-.85 3.42-.24 1.02.5 1.85 1.49 1.85 1.78 0 3.15-1.88 3.15-4.59 0-2.4-1.73-4.08-4.2-4.08-2.86 0-4.54 2.14-4.54 4.36 0 .86.33 1.79.74 2.3a.3.3 0 01.07.28l-.28 1.13c-.04.19-.14.23-.33.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.16 2.3-6.07 6.63-6.07 3.48 0 6.19 2.48 6.19 5.8 0 3.46-2.18 6.24-5.2 6.24-1.02 0-1.97-.53-2.3-1.15l-.62 2.38c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="Twitter / X">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('featuredGrid');
+    if (!grid || !window.PRODUCTS) return;
+    const featured = PRODUCTS.slice(0, 4);
+    grid.innerHTML = featured.map(p => `
+      <div class="product-card">
+        <a href="shop.html">
+          <div class="product-card__img">
+            <img src="assets/${p.img}" alt="${p.name}" class="product-card__photo" loading="lazy" onerror="this.style.display='none'" />
+            ${p.badge ? `<span class="product-card__badge">${p.badge}</span>` : ''}
+          </div>
+        </a>
+        <div class="product-card__body">
+          <div class="product-card__name">${p.name}</div>
+          <div class="product-card__desc">${p.desc}</div>
+          <div class="product-card__footer">
+            <span class="product-card__price">${GP.formatPrice(p.price)}</span>
+            <button class="product-card__btn" data-id="${p.id}" title="Ajouter au panier" aria-label="Ajouter au panier">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('.product-card__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = PRODUCTS.find(x => x.id === +btn.dataset.id);
+        if (p) GP.addToCart({ id: p.id, name: p.name, price: p.price, padClass: p.padClass, size: p.sizes[1] || p.sizes[0] });
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <g stroke="#111111" stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- Shared vertical stem -->
+    <line x1="105" y1="18" x2="105" y2="180" stroke-width="10"/>
+    <!-- Top serif -->
+    <line x1="92" y1="18" x2="118" y2="18" stroke-width="10"/>
+    <!-- P bowl: clockwise right semicircle -->
+    <path d="M 105 18 A 45 45 0 0 1 105 108" stroke-width="10"/>
+    <!-- G: large counterclockwise arc -->
+    <path d="M 105 108 A 57 57 0 1 0 105 178" stroke-width="10"/>
+    <!-- G crossbar -->
+    <line x1="105" y1="143" x2="140" y2="143" stroke-width="10"/>
+    <!-- G bottom serif -->
+    <line x1="92" y1="178" x2="118" y2="178" stroke-width="10"/>
+  </g>
+</svg>

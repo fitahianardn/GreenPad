@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>Boutique – Green Pad</title>
+  <meta name="description" content="Découvrez toute la collection Green Pad — des classiques minimalistes aux originaux artistiques, tous fabriqués en plastique recyclé." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; }
+    .shop-sidebar { position: sticky; top: 100px; }
+    .sidebar-section { margin-bottom: 36px; }
+    .sidebar-title { font-family: var(--font-heading); font-size: 1rem; color: var(--c5); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--c1); }
+    .sidebar-filters { display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-filter { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 8px 12px; border-radius: var(--radius-sm); transition: background var(--transition); font-size: 0.9rem; color: var(--text-secondary); }
+    .sidebar-filter:hover { background: var(--c1); }
+    .sidebar-filter.active { background: var(--c1); color: var(--c4); font-weight: 600; }
+    .sidebar-filter .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .price-range { display: flex; flex-direction: column; gap: 8px; }
+    .price-range input[type=range] { width: 100%; accent-color: var(--c4); }
+    .price-range label { font-size: 0.85rem; color: var(--text-light); }
+    .shop-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .shop-count { font-size: 0.9rem; color: var(--text-light); }
+    .sort-select { padding: 9px 14px; border: 2px solid var(--c1); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-secondary); background: white; cursor: pointer; outline: none; }
+    .sort-select:focus { border-color: var(--c3); }
+    /* Product Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(40,38,60,0.5); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--transition); padding: 24px; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: white; border-radius: var(--radius-lg); max-width: 680px; width: 100%; padding: 0; overflow: hidden; transform: translateY(20px); transition: transform var(--transition); box-shadow: var(--shadow-xl); }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal__img { height: 260px; position: relative; overflow: hidden; }
+    .modal__body { padding: 36px; }
+    .modal__header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+    .modal__name { font-family: var(--font-heading); font-size: 1.6rem; color: var(--c5); }
+    .modal__price { font-size: 1.4rem; font-weight: 700; color: var(--c4); }
+    .modal__close { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--c1); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--c5); transition: var(--transition); flex-shrink: 0; }
+    .modal__close:hover { background: var(--c4); color: white; border-color: var(--c4); }
+    .modal__desc { color: var(--text-light); margin-bottom: 24px; }
+    .modal__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 900px) { .shop-layout { grid-template-columns: 1fr; } .shop-sidebar { position: static; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span>›</span>
+      <span>Boutique</span>
+    </div>
+    <h1>Notre Collection</h1>
+    <p>Du minimalisme épuré à l’art le plus audacieux — chaque tapis fabriqué en plastique recyclé.</p>
+  </div>
+</div>
+
+<!-- SHOP MAIN -->
+<section class="section-sm">
+  <div class="container">
+    <div class="shop-layout">
+
+      <!-- Sidebar -->
+      <aside class="shop-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Style</div>
+          <div class="sidebar-filters">
+            <div class="sidebar-filter active" data-filter="all">
+              <span class="dot" style="background:linear-gradient(135deg,var(--c3),var(--c5))"></span> Tous les produits
+            </div>
+            <div class="sidebar-filter" data-filter="minimal">
+              <span class="dot" style="background:#111"></span> Minimal
+            </div>
+            <div class="sidebar-filter" data-filter="artistic">
+              <span class="dot" style="background:var(--c3)"></span> Artistique
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Prix</div>
+          <div class="price-range">
+            <input type="range" id="priceRange" min="25000" max="60000" value="60000" step="5000" />
+            <label>Jusqu'à <strong id="priceVal">60 000 Ar</strong></label>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <a href="custom.html" class="btn btn-primary" style="width:100%; text-align:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Sur Mesure
+          </a>
+        </div>
+      </aside>
+
+      <!-- Products -->
+      <div>
+        <div class="shop-header">
+          <span class="shop-count" id="shopCount">16 produits</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label for="sortSelect" style="font-size:0.82rem;color:var(--text-light);">Trier par</label>
+            <select class="sort-select" id="sortSelect">
+              <option value="default">Mis en avant</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
+              <option value="name">Nom A–Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-3" id="productGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom Pad CTA -->
+<section style="background:var(--c1);padding:60px 0;">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">Vous ne trouvez pas ce que vous cherchez ?</span>
+    <h3 style="margin-bottom:16px;">Créez Votre Propre Tapis de Souris</h3>
+    <p style="max-width:500px;margin:0 auto 32px;color:var(--text-light);">N’importe quelle forme, n’importe quel design, n’importe quelle taille. Notre service de commande sur mesure vous permet de réaliser exactement votre vision.</p>
+    <a href="custom.html" class="btn btn-primary btn-lg">Commencer à Personnaliser</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="shop.html?filter=minimal" class="footer__link">Minimal</a></li>
+          <li><a href="shop.html?filter=artistic" class="footer__link">Artistique</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="about.html#sustainability" class="footer__link">Durabilité</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Livraison</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer__social-link" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Product Modal -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal__img" style="position:relative;">
+      <img id="modal-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+      <div class="pad-preview" id="modal-pad" style="position:absolute;bottom:16px;right:16px;width:80px;height:56px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.35);"></div>
+    </div>
+    <div class="modal__body">
+      <div class="modal__header">
+        <div>
+          <div class="modal__name" id="modal-name"></div>
+          <div class="modal__price" id="modal-price"></div>
+        </div>
+        <button class="modal__close" id="modalClose" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="modal__desc" id="modal-desc"></p>
+      <div class="form-group">
+        <label class="form-label">Taille</label>
+        <select class="form-select" id="modal-size"></select>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn-primary" id="modal-add">Ajouter au Panier</button>
+        <a href="custom.html" class="btn btn-secondary">Personnaliser</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<script>
+  /* Sidebar filter clicks */
+  document.querySelectorAll('.sidebar-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (window.renderProducts) window.renderProducts(btn.dataset.filter);
+      const countEl = document.getElementById('shopCount');
+      const filtered = btn.dataset.filter === 'all' ? window.PRODUCTS : (window.PRODUCTS || []).filter(p => p.category === btn.dataset.filter);
+      if (countEl) countEl.textContent = `${filtered.length} produit${filtered.length !== 1 ? 's' : ''}`;
+    });
+  });
+
+  /* Price range */
+  const priceRange = document.getElementById('priceRange');
+  const priceVal   = document.getElementById('priceVal');
+  if (priceRange) {
+    priceRange.addEventListener('input', () => {
+      const max = +priceRange.value;
+      priceVal.textContent = `${max.toLocaleString('fr-FR')} Ar`;
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      grid.querySelectorAll('.product-card').forEach(card => {
+        const id = +card.dataset.id;
+        const p  = window.PRODUCTS?.find(x => x.id === id);
+        card.style.display = (!p || p.price <= max) ? '' : 'none'; /* Ariary compare */
+      });
+      const visible = grid.querySelectorAll('.product-card:not([style*="none"])').length;
+      const countEl = document.getElementById('shopCount');
+      if (countEl) countEl.textContent = `${visible} produit${visible !== 1 ? 's' : ''}`;
+    });
+  }
+
+  /* Sort */
+  const sortSelect = document.getElementById('sortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll('.product-card'));
+      cards.sort((a, b) => {
+        const pa = window.PRODUCTS?.find(x => x.id === +a.dataset.id);
+        const pb = window.PRODUCTS?.find(x => x.id === +b.dataset.id);
+        if (!pa || !pb) return 0;
+        if (sortSelect.value === 'price-asc')  return pa.price - pb.price;
+        if (sortSelect.value === 'price-desc') return pb.price - pa.price;
+        if (sortSelect.value === 'name')       return pa.name.localeCompare(pb.name);
+        return pa.id - pb.id;
+      });
+      cards.forEach(c => grid.appendChild(c));
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/logo.jpeg" type="image/jpeg" />
+  <title>Contact – Green Pad</title>
+  <meta name="description" content="Contactez Green Pad — questions, commandes sur mesure, collaborations. Nous répondons sous 24 heures." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: start; }
+    .contact-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 48px 40px; }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-info-item { display: flex; gap: 20px; align-items: flex-start; }
+    .contact-info-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--c1); display: flex; align-items: center; justify-content: center; color: var(--c4); flex-shrink: 0; }
+    .contact-info-item h4 { margin-bottom: 4px; font-size: 1rem; }
+    .contact-info-item p { font-size: 0.9rem; color: var(--text-light); margin: 0; line-height: 1.5; }
+    .contact-info-item a { color: var(--c4); transition: color var(--transition); }
+    .contact-info-item a:hover { color: var(--c5); }
+    .faq-section { background: var(--c1); padding: 110px 0; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .faq-item { background: white; border-radius: var(--radius-md); padding: 32px; box-shadow: var(--shadow-sm); }
+    .faq-item h4 { margin-bottom: 10px; font-size: 1rem; color: var(--c5); }
+    .faq-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
+    .success-message { display: none; text-align: center; padding: 40px; }
+    .success-message svg { margin: 0 auto 16px; color: var(--c4); }
+    .success-message h3 { margin-bottom: 8px; }
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.jpeg" alt="Green Pad" class="nav__logo-img" />
+        <span class="nav__logo-name">Green Pad</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html"   class="nav__link">Accueil</a></li>
+        <li><a href="shop.html"    class="nav__link">Boutique</a></li>
+        <li><a href="custom.html"  class="nav__link">Sur Mesure</a></li>
+        <li><a href="about.html"   class="nav__link">À propos</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="cart.html" class="nav__cart" aria-label="Panier">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav__cart-count cart-badge">0</span>
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile" id="mobileNav">
+  <ul class="nav__mobile-links">
+    <li><a href="index.html"   class="nav__mobile-link">Accueil</a></li>
+    <li><a href="shop.html"    class="nav__mobile-link">Boutique</a></li>
+    <li><a href="custom.html"  class="nav__mobile-link">Sur Mesure</a></li>
+    <li><a href="about.html"   class="nav__mobile-link">À propos</a></li>
+    <li><a href="contact.html" class="nav__mobile-link">Contact</a></li>
+    <li><a href="cart.html"    class="nav__mobile-link">Panier</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a><span>›</span><span>Contact</span></div>
+    <h1>Contactez-Nous</h1>
+    <p>Une question, un projet sur mesure ou juste envie de dire bonjour ? Nous répondons sous 24 heures.</p>
+  </div>
+</div>
+
+<!-- CONTACT MAIN -->
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Form -->
+      <div>
+        <span class="section-label">Envoyer un Message</span>
+        <h2 style="margin-bottom:12px;">Nous Serions Ravis<br />de Vous Entendre</h2>
+        <div class="divider divider-left"></div>
+        <p style="margin-bottom:40px;color:var(--text-light);">Que vous ayez une question sur une commande, souhaitiez discuter d’un grand projet personnalisé ou soyez intéressé par un partenariat en gros — contactez-nous.</p>
+
+        <div id="contactSuccess" class="success-message">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+          <h3>Message Envoyé !</h3>
+          <p style="color:var(--text-light);">Merci de nous avoir contactés. Nous vous répondrons sous 24 heures.</p>
+          <a href="index.html" class="btn btn-primary" style="margin-top:24px;">Retour à l’Accueil</a>
+        </div>
+
+        <form id="contactForm">
+          <div class="grid-2" style="gap:20px;">
+            <div class="form-group">
+              <label class="form-label" for="cName">Nom complet *</label>
+              <input type="text" id="cName" class="form-input" placeholder="Jean Rakoto" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cEmail">E-mail *</label>
+              <input type="email" id="cEmail" class="form-input" placeholder="jean@exemple.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cSubject">Sujet</label>
+            <select id="cSubject" class="form-select">
+              <option value="">Choisissez un sujet…</option>
+              <option>Question sur une commande</option>
+              <option>Commande sur mesure</option>
+              <option>Grossiste / B2B</option>
+              <option>Livraison &amp; Délai</option>
+              <option>Retours &amp; Remboursements</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cMessage">Message *</label>
+            <textarea id="cMessage" class="form-textarea" placeholder="Dites-nous comment nous pouvons vous aider…" required style="min-height:160px;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Envoyer le Message</button>
+        </form>
+      </div>
+
+      <!-- Info card -->
+      <div class="contact-card">
+        <h3 style="margin-bottom:32px;">Informations de Contact</h3>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>E-mail</h4>
+              <p><a href="mailto:hello@greenpad.eco">hello@greenpad.eco</a></p>
+              <p>Réponse sous 24 heures</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Téléphone / WhatsApp</h4>
+              <p><a href="tel:+261341234567">+261 34 12 345 67</a></p>
+              <p>Lun–Ven 8h00–17h00 (EAT)</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Basé à</h4>
+              <p>Antananarivo, Madagascar</p>
+              <p>Livraison dans le monde entier</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <h4>Suivez-Nous</h4>
+              <p><a href="#">@greenpad.eco</a> sur Instagram</p>
+              <p>Inspirations quotidiennes &amp; coulisses</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">FAQ</span>
+      <h2>Questions Fréquentes</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>Combien de temps prend une commande sur mesure ?</h4>
+        <p>Nous envoyons généralement un devis sous 24 heures. La production prend 5 à 10 jours ouvrables selon la complexité, suivie de la livraison (3 à 7 jours selon la destination).</p>
+      </div>
+      <div class="faq-item">
+        <h4>Quels formats de fichiers acceptez-vous ?</h4>
+        <p>Nous préférons les fichiers vectoriels (SVG, AI, PDF) pour une meilleure qualité d’impression. Nous acceptons aussi les images haute résolution (PNG, JPG à 300 dpi+). Notre équipe peut vous aider à affiner votre illustration.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Puis-je commander en grande quantité pour une entreprise ?</h4>
+        <p>Absolument. Nous proposons des tarifs professionnels et grossistes pour les commandes en volume (10+ unités). Contactez-nous directement pour discuter des quantités, du branding et des prix.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Le matériau recyclé est-il résistant ?</h4>
+        <p>Oui — le rPET est extrêmement robuste. Nos tapis sont conçus pour durer des années d’utilisation quotidienne. La surface est lisse et stable, et la base antidérapante maintient tout en place.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Quelle est votre politique de retour ?</h4>
+        <p>Les produits standard peuvent être retournés sous 14 jours non utilisés. Les commandes sur mesure ne sont pas remboursables une fois approuvées et en production, mais nous travaillerons avec vous en cas de problème de qualité.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Livrez-vous à Madagascar et à l’international ?</h4>
+        <p>Oui — nous livrons partout. Livraison à partir de 3 000 Ar — offerte dès 3 articles achetés. Les tarifs internationaux varient selon la destination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/logo.jpeg" alt="Green Pad" class="footer__logo-img" />
+          <span class="footer__logo-name">Green Pad</span>
+        </div>
+        <p>Tapis de souris premium fabriqués à partir de bouteilles en plastique recyclé.</p>
+      </div>
+      <div>
+        <h4 class="footer__heading">Boutique</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html" class="footer__link">Tous les Produits</a></li>
+          <li><a href="custom.html" class="footer__link">Commande Sur Mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Entreprise</h4>
+        <ul class="footer__links">
+          <li><a href="about.html" class="footer__link">Notre Histoire</a></li>
+          <li><a href="about.html#sustainability" class="footer__link">Durabilité</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__heading">Support &amp; Légal</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="#" class="footer__link">Livraison</a></li>
+          <li><a href="#" class="footer__link">Retours</a></li>
+          <li><a href="mentions-legales.html" class="footer__link">Mentions Légales</a></li>
+          <li><a href="cgv.html" class="footer__link">CGV</a></li>
+          <li><a href="cgu.html" class="footer__link">CGU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Green Pad. Tous droits réservés.</p>
+      <div class="footer__social">
+        <a href="#" class="footer__social-link" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer__social-link" aria-label="Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display    = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+    GP.showToast('Message envoyé ! Nous vous recontactons très vite.');
+  });
+</script>
+</body>
+</html>
